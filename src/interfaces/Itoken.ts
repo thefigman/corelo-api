@@ -4,6 +4,7 @@ export default interface Itoken {
   _id?: string;
   name?: string;
   timeAdded?: number;
+  categories?: string[];
 
   network?: string;
   contractAddress?: string;

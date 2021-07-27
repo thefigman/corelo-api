@@ -5,29 +5,29 @@ const mongoose = require("mongoose") as Mongoose;
 
 @ObjectType()
 export class TokenSocial extends mongoose.Document implements ItokenSocial {
-  @Field()
-  name: string;
+  @Field({nullable: true})
+  name?: string;
 
-  @Field()
-  url: string;
+  @Field({nullable: true})
+  url?: string;
 }
 
 @InputType()
 export class TokenSocialInput implements ItokenSocial {
-  @Field()
-  name: string;
+  @Field({nullable: true})
+  name?: string;
 
-  @Field()
-  url: string;
+  @Field({nullable: true})
+  url?: string;
 }
 
 export const TokenSocialSchema = new mongoose.Schema({
   name: {
     type: String,
-    required: true,
+    required: false,
   },
   url: {
     type: String,
-    required: true,
+    required: false,
   },
 });

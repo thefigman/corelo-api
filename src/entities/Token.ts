@@ -7,14 +7,17 @@ const mongoose = require("mongoose") as Mongoose;
 
 @ObjectType()
 export class Token extends mongoose.Document implements Itoken {
-  @Field({nullable: true})
+  @Field({ nullable: true })
   _id: string;
 
-  @Field()
+  @Field({ nullable: true })
   name: string;
 
-  @Field()
+  @Field({ nullable: true })
   timeAdded: number;
+
+  @Field(() => [String], { nullable: true })
+  categories?: string[];
 
   // token info
   @Field({ nullable: true })
@@ -93,6 +96,9 @@ export class TokenInput implements Itoken {
   @Field()
   name: string;
 
+  @Field(() => [String], { nullable: true })
+  categories?: string[];
+
   // token info
   @Field({ nullable: true })
   network?: string;
@@ -143,14 +149,35 @@ export class TokenInput implements Itoken {
   presaleClaimDate?: number;
 }
 
+@InputType()
+export class TokenQuery {
+  @Field({ nullable: true })
+  group?: string;
+
+  @Field(() => [String], { nullable: true })
+  categories?: string[];
+
+  @Field({ nullable: true })
+  page?: number;
+
+  @Field({ nullable: true })
+  regex?: string;
+}
+
 export const TokenSchema = new mongoose.Schema({
   name: {
     type: String,
-    required: true,
+    required: false,
   },
+  categories: [
+    {
+      type: String, 
+      required: false
+    }
+  ],
   timeAdded: {
     type: Number,
-    required: true,
+    required: false,
   },
   network: {
     type: String,

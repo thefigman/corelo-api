@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "nodemon --exec ts-node src/corelo-api-index.ts",
     "debug": "nodemon --exec 'node --inspect=0.0.0.0:9229 --require ts-node/register src/corelo-api-index.ts'",
-    "build": "npm install && tsc && cp -r src/assets dist/assets",
+    "build": "npm install && tsc",
     "start": "pm2 start dist/corelo-api-index.js",
     "restart": "pm2 restart dist/corelo-api-index.js",
     "stop": "pm2 stop corelo-api-index",
